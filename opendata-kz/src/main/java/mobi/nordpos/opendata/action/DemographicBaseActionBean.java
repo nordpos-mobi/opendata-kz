@@ -15,49 +15,30 @@
  */
 package mobi.nordpos.opendata.action;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mobi.nordpos.opendata.model.DemographicIndicator;
-import net.sourceforge.stripes.action.DefaultHandler;
-import net.sourceforge.stripes.action.ForwardResolution;
-import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.validation.ValidationErrors;
+import net.sourceforge.stripes.validation.ValidationMethod;
 
 /**
  * @author Andrey Svininykh <svininykh@gmail.com>
  */
-public class DemographicIndicatorActionBean extends BaseActionBean {
+public abstract class DemographicBaseActionBean extends BaseActionBean {
 
-    private static final String DEMOGRAPH_VIEW = "/WEB-INF/jsp/demographic_view.jsp";
-
-    @DefaultHandler
-    public Resolution view() {
-
-        return new ForwardResolution(DEMOGRAPH_VIEW);
+    @ValidationMethod
+    public void validateDemographicIndicatorList(ValidationErrors errors) {
+        if (getContext().getDemographicIndicators() == null) {
+            getContext().setDemographicIndicators(getDemographicIndicatorList());
+        }
     }
 
-    public DemographicIndicator getDemographicIndicator(String year) throws MalformedURLException, IOException {
-        String requestURL = getContext().getServletContext().getInitParameter("opendata.gateway").concat("brate_").concat(year);
-        URL wikiRequest = new URL(requestURL);
-        Scanner scanner = new Scanner(wikiRequest.openStream());
-        String response = scanner.useDelimiter("\\Z").next();
-        scanner.close();
-        response = response.substring(1, response.length() - 1);
-        Gson gson = new Gson();
-        DemographicIndicator di = gson.fromJson(response, DemographicIndicator.class);
-
-        return di;
-    }
-
-    public List<DemographicIndicator> getDemographicIndicatorList() {
+    private List<DemographicIndicator> getDemographicIndicatorList() {
         try {
             List<DemographicIndicator> demographicIndicators = new ArrayList<DemographicIndicator>();
 
@@ -71,6 +52,19 @@ public class DemographicIndicatorActionBean extends BaseActionBean {
         } catch (IOException ex) {
             return null;
         }
+    }
+
+    private DemographicIndicator getDemographicIndicator(String year) throws MalformedURLException, IOException {
+        String requestURL = getContext().getServletContext().getInitParameter("opendata.gateway").concat("brate_").concat(year);
+        URL wikiRequest = new URL(requestURL);
+        Scanner scanner = new Scanner(wikiRequest.openStream());
+        String response = scanner.useDelimiter("\\Z").next();
+        scanner.close();
+        response = response.substring(1, response.length() - 1);
+        Gson gson = new Gson();
+        DemographicIndicator di = gson.fromJson(response, DemographicIndicator.class);
+
+        return di;
     }
 
 }

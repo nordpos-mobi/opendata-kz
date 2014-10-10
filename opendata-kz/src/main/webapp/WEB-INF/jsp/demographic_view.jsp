@@ -21,7 +21,12 @@
         <stripes:label name="label.DemographicIndicator" />
     </stripes:layout-component>
 
-    <stripes:layout-component name="button.action">     
+    <stripes:layout-component name="button.action">
+        <sdynattr:link href="/DemographicPlot.action"
+                       data-role="button"
+                       data-icon="bar-chart-o">
+            <stripes:label name="label.plot" />
+        </sdynattr:link>         
     </stripes:layout-component>
 
     <stripes:layout-component name="content">
@@ -53,7 +58,7 @@
             </thead>
 
             <tbody>
-                <c:forEach items="${actionBean.demographicIndicatorList}" var="indicator">
+                <c:forEach items="${demographicIndicators}" var="indicator">
                     <tr>
                         <th>
                             <c:out value="${indicator.year}"/>

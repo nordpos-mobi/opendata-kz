@@ -33,7 +33,7 @@
         <div class="ui-body">
             <stripes:errors />
             <stripes:messages />
-            <sdynattr:link href="/DemographicIndicator.action"
+            <sdynattr:link href="/DemographicTable.action"
                            class="ui-btn ui-shadow ui-corner-all"
                            data-transition="slide">                
                 <stripes:label name="label.DemographicIndicator" />
