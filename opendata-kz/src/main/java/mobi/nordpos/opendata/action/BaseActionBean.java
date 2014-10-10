@@ -15,7 +15,13 @@
  */
 package mobi.nordpos.opendata.action;
 
+import java.io.InputStream;
+import java.util.Formatter;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import mobi.nordpos.opendata.ext.MobileActionBeanContext;
+import mobi.nordpos.opendata.ext.MyLocalePicker;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.controller.StripesFilter;
@@ -56,10 +62,58 @@ public abstract class BaseActionBean implements ActionBean {
     public String getBarcodePrefix() {
         return getContext().getServletContext().getInitParameter("barcode.prefix");
     }
-    
+
+    @SuppressWarnings("unchecked")
+    public String getLastUrl() {
+        HttpServletRequest req = getContext().getRequest();
+        StringBuilder sb = new StringBuilder();
+
+        // Start with the URI and the path
+        String uri = (String) req.getAttribute("javax.servlet.forward.request_uri");
+        String path = (String) req.getAttribute("javax.servlet.forward.path_info");
+        if (uri == null) {
+            uri = req.getRequestURI();
+            path = req.getPathInfo();
+        }
+        sb.append(uri);
+        if (path != null) {
+            sb.append(path);
+        }
+
+        // Now the request parameters
+        sb.append('?');
+        Map<String, String[]> map
+                = new HashMap<String, String[]>(req.getParameterMap());
+
+        // Remove previous locale parameter, if present.
+        map.remove(MyLocalePicker.LOCALE);
+
+        // Append the parameters to the URL
+        for (String key : map.keySet()) {
+            String[] values = map.get(key);
+            for (String value : values) {
+                sb.append(key).append('=').append(value).append('&');
+            }
+        }
+        // Remove the last '&'
+        sb.deleteCharAt(sb.length() - 1);
+
+        return sb.toString();
+    }
+
     public String getLocalizationKey(String key) {
         return StripesFilter.getConfiguration().getLocalizationBundleFactory()
                 .getFormFieldBundle(getContext().getLocale()).getString(key);
+    }
+
+    public InputStream getLocalizationTemplate(String path) {
+        String fileName = new Formatter().format(path, ".".concat(getContext().getServletContext().getInitParameter("country.code"))).toString();
+        InputStream is = getContext().getServletContext().getResourceAsStream(fileName);
+        if (is == null) {
+            return getContext().getServletContext().getResourceAsStream(new Formatter().format(path, "").toString());
+        } else {
+            return is;
+        }
     }
 
 }

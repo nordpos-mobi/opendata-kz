@@ -37,11 +37,24 @@
                         <stripes:layout-component name="header.title"/>
                     </h2>
                     <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal" data-mini="true">
-                        <stripes:layout-component name="button.action"/>                        
+                        <stripes:layout-component name="button.action"/>  
+                        <fmt:message var="otherLocale" key="layout.otherLocale"/>
+                        <sdynattr:link href="${actionBean.lastUrl}"
+                                       class="ui-btn ui-corner-all"
+                                       role="button">
+                            <stripes:param name="locale" value="${otherLocale}"/>
+                            <fmt:message key="layout.currentLanguage"/>
+                        </sdynattr:link>
                     </div>
                 </div>
                 <div data-role="content" style="padding: 15px" align="center">
-                    <stripes:layout-component name="content"/>
+                    <stripes:layout-component name="content"/>                    
+                    <div class="ui-body">
+                        <h3><stripes:label name="label.PoweredBy" /></h3>
+                        <a href="http://data.gov.kz">
+                            <img src="<c:url value='/image/logo.data.gov.kz.png' />" alt="Data.gov.kz"/>
+                        </a>
+                    </div>
                 </div>
                 <div data-role="footer" class="ui-bar">
                     <div class="ui-btn-left" data-role="controlgroup" data-type="horizontal" data-mini="true">

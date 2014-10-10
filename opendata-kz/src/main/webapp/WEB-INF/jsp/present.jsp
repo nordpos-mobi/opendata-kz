@@ -25,9 +25,10 @@
 
     <stripes:layout-component name="content">
         <div class="ui-body">            
-            <a href="http://salyk.org.kz">
-                <img src="<c:url value='/image/logo.png' />" alt="Salyk Innovation"/>
-            </a>
+            <a href="http://www.nordpos.mobi">
+                <img src="<c:url value='/image/logo.png' />" alt="NORD POS mobi"/>
+            </a>            
+            <h2><stripes:label name="label.present" /></h2>
         </div>
         <div class="ui-body">
             <stripes:errors />
