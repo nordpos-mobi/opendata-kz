@@ -15,7 +15,6 @@
  */
 package mobi.nordpos.opendata.action;
 
-import java.util.UUID;
 import mobi.nordpos.opendata.ext.MobileActionBeanContext;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;

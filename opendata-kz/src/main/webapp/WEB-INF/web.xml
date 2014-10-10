@@ -8,9 +8,14 @@
     <display-name>nordpos.mobi: Open Data of Kazakhstan Government</display-name>
     
     <context-param>
+        <param-name>opendata.gateway</param-name>
+        <param-value>http://data.gov.kz/api/v2/</param-value>
+    </context-param>
+    
+    <context-param>
         <param-name>country.code</param-name>
         <param-value>KZ</param-value>
-    </context-param>         
+    </context-param>
     
     <!-- STRIPES LOCALIZATION PARAMETERS -->
     <context-param>

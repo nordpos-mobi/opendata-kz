@@ -29,8 +29,14 @@
                 <img src="<c:url value='/image/logo.png' />" alt="Salyk Innovation"/>
             </a>
         </div>
-
         <div class="ui-body">
+            <stripes:errors />
+            <stripes:messages />
+            <sdynattr:link href="/DemographicIndicator.action"
+                           class="ui-btn ui-shadow ui-corner-all"
+                           data-transition="slide">                
+                <stripes:label name="label.DemographicIndicator" />
+            </sdynattr:link>
         </div>
     </stripes:layout-component>
 
