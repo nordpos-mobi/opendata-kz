@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonPrimitive;
+import java.math.BigInteger;
 import mobi.nordpos.opendata.model.DemographicIndicator;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -35,7 +36,7 @@ public class DemographicPlotActionBean extends DemographicBaseActionBean {
     public Resolution view() {
         return new ForwardResolution(PLOT);
     }
-    
+
     public String getDataBirthrate() {
         JsonArray dataArray = new JsonArray();
         for (DemographicIndicator indicator : getContext().getDemographicIndicators()) {
@@ -50,4 +51,50 @@ public class DemographicPlotActionBean extends DemographicBaseActionBean {
 
         return s;
     }
+
+    public String getDataMortality() {
+        JsonArray dataArray = new JsonArray();
+        for (DemographicIndicator indicator : getContext().getDemographicIndicators()) {
+            JsonArray ja = new JsonArray();
+            ja.add(new JsonPrimitive(indicator.getYear()));
+            ja.add(new JsonPrimitive(indicator.getMortality().negate()));
+            dataArray.add(ja);
+        }
+
+        Gson gson = new GsonBuilder().create();
+        String s = gson.toJson(dataArray);
+
+        return s;
+    }
+
+    public String getDataMarriage() {
+        JsonArray dataArray = new JsonArray();
+        for (DemographicIndicator indicator : getContext().getDemographicIndicators()) {
+            JsonArray ja = new JsonArray();
+            ja.add(new JsonPrimitive(indicator.getYear()));
+            ja.add(new JsonPrimitive(indicator.getMarriage()));
+            dataArray.add(ja);
+        }
+
+        Gson gson = new GsonBuilder().create();
+        String s = gson.toJson(dataArray);
+
+        return s;
+    }
+
+    public String getDataDivorce() {
+        JsonArray dataArray = new JsonArray();
+        for (DemographicIndicator indicator : getContext().getDemographicIndicators()) {
+            JsonArray ja = new JsonArray();
+            ja.add(new JsonPrimitive(indicator.getYear()));
+            ja.add(new JsonPrimitive(indicator.getDivorce().negate()));
+            dataArray.add(ja);
+        }
+
+        Gson gson = new GsonBuilder().create();
+        String s = gson.toJson(dataArray);
+
+        return s;
+    }
+
 }

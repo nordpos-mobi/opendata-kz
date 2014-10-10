@@ -7,8 +7,8 @@
 
 <%@include file="/WEB-INF/jsp/common/taglibs.jsp"%>
 <stripes:layout-render name="/WEB-INF/jsp/common/layout_main.jsp"
-                       title="Demographic Indicator"
-                       pageid="DemographicIndicator">
+                       title="Demographic Indicator Table"
+                       pageid="DemographicIndicatorTable">
 
     <stripes:layout-component name="button.return">
         <sdynattr:link href="/Presentation.action"
@@ -18,13 +18,14 @@
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.DemographicIndicator" />
+        <stripes:label name="label.DemographicIndicator.table" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">
         <sdynattr:link href="/DemographicPlot.action"
                        data-role="button"
-                       data-icon="bar-chart-o">
+                       data-icon="bar-chart-o"
+                       data-prefetch="true">
             <stripes:label name="label.plot" />
         </sdynattr:link>         
     </stripes:layout-component>
