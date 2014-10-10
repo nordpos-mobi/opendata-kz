@@ -32,16 +32,23 @@
                data-mode="columntoggle" 
                class="ui-body-d ui-shadow table-stripe ui-responsive" 
                data-column-btn-theme="b" 
-               data-column-btn-text="Columns to display..." 
+               data-column-btn-text="${actionBean.getLocalizationKey("label.column.display")}" 
                data-column-popup-theme="a">
             <thead>
                 <tr class="ui-bar-d">
                     <th><stripes:label name="label.Year" /></th>
                     <th data-priority="1"><stripes:label name="label.Birthrate" /></th>             
                     <th data-priority="2"><stripes:label name="label.Mortality" /></th>
-                    <th data-priority="1"><stripes:label name="label.Marriage" /></th>
-                    <th data-priority="2"><stripes:label name="label.Divorce" /></th>
-                        <%--<th data-priority="1"><abbr title="Rotten Tomato Rating">Rating</abbr></th>--%>
+                    <th data-priority="1">
+                        <abbr title="${actionBean.getLocalizationKey("label.abbr.Marriage")}">
+                            <c:out value="${actionBean.getLocalizationKey('label.Marriage')}"/> 
+                        </abbr>
+                    </th>
+                    <th data-priority="2">
+                        <abbr title="${actionBean.getLocalizationKey("label.abbr.Divorce")}">
+                            <c:out value="${actionBean.getLocalizationKey('label.Divorce')}"/>                         
+                        </abbr>
+                    </th>
                 </tr>
             </thead>
 
@@ -71,7 +78,6 @@
                                               type="NUMBER"
                                               pattern="#,##0" />
                         </td>
-                        <%--<td><a href="http://en.wikipedia.org/wiki/Citizen_Kane" data-rel="external">Citizen Kane</a></td>--%>
                     </tr>
                 </c:forEach>
             </tbody>

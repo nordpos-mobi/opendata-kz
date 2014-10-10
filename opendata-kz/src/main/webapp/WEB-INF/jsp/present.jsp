@@ -11,7 +11,7 @@
                        pageid="home">
 
     <stripes:layout-component name="header.title">
-        Project NORD POS mobi
+       <stripes:label name="label.nordpos.mobi.project" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">
