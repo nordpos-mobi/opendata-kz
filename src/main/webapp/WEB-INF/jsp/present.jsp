@@ -38,6 +38,11 @@
                            data-transition="slide">                
                 <stripes:label name="label.DemographicIndicator" />
             </sdynattr:link>
+            <sdynattr:link href="/CommunicationMenu.action"
+                           class="ui-btn ui-shadow ui-corner-all"
+                           data-transition="slide">                
+                <stripes:label name="label.CommunicationIndicator" />
+            </sdynattr:link>
         </div>
     </stripes:layout-component>
 
