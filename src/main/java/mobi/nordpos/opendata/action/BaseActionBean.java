@@ -58,11 +58,7 @@ public abstract class BaseActionBean implements ActionBean {
     public String getDataBasePassword() {
         return getContext().getServletContext().getInitParameter("db.password");
     }
-
-    public String getBarcodePrefix() {
-        return getContext().getServletContext().getInitParameter("barcode.prefix");
-    }
-
+    
     @SuppressWarnings("unchecked")
     public String getLastUrl() {
         HttpServletRequest req = getContext().getRequest();

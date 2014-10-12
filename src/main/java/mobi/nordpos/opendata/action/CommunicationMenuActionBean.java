@@ -16,6 +16,7 @@
 package mobi.nordpos.opendata.action;
 
 import net.sourceforge.stripes.action.DefaultHandler;
+import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 
@@ -26,6 +27,7 @@ public class CommunicationMenuActionBean extends CommunicationBaseActionBean {
 
     private static final String MENU = "/WEB-INF/jsp/communication_menu.jsp";
 
+    @DontValidate
     @DefaultHandler
     public Resolution view() {
         return new ForwardResolution(MENU);

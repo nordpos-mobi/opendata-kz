@@ -28,6 +28,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mobi.nordpos.opendata.model.CommunicationIndicator;
 import mobi.nordpos.opendata.model.CommunicationIndicator.CommunicationIndicatorType;
 import net.sourceforge.stripes.validation.ValidationErrors;
@@ -42,10 +44,36 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
 
     @ValidationMethod
     public void validateCommunicationIndicatorList(ValidationErrors errors) {
+        if (getContext().getCommunicationIndicators() == null) {
+            List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
+            indicators.addAll(getFixPhoneSubscribers());
+            indicators.addAll(getFixInetSubscribers());
+            indicators.addAll(getMobilePhoneSubscribers());
+            getContext().setCommunicationIndicators(indicators);
+        }
+    }
+
+    private List<CommunicationIndicator> getFixPhoneSubscribers() {
         try {
-            getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_PHONE_SUBSCRIBER);
+            return getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_PHONE_SUBSCRIBER);
         } catch (IOException ex) {
-            
+            return null;
+        }
+    }
+
+    private List<CommunicationIndicator> getFixInetSubscribers() {
+        try {
+            return getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_TOTAL_INET_SUBSCRIBER);
+        } catch (IOException ex) {
+            return null;
+        }
+    }
+
+    private List<CommunicationIndicator> getMobilePhoneSubscribers() {
+        try {
+            return getCommunicationIndicatorList("comstat", 2014, CommunicationIndicatorType.MOBILE_PHONE_SUBSCRIBER);
+        } catch (IOException ex) {
+            return null;
         }
     }
 
@@ -59,7 +87,7 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
             case FIX_PHONE_SUBSCRIBER:
                 id = 3;
                 break;
-            case FIX_INET_SUBSCRIBER:
+            case FIX_TOTAL_INET_SUBSCRIBER:
                 id = 5;
                 break;
             case MOBILE_PHONE_SUBSCRIBER:
@@ -112,7 +140,7 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
         }
 
         List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
-        
+
         if (jStatObject != null) {
             for (int i = 0; i < sMonth.length; i++) {
                 CommunicationIndicator indicator = new CommunicationIndicator();
@@ -123,7 +151,7 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
                 indicators.add(indicator);
             }
         }
-        
+
         return indicators;
     }
 

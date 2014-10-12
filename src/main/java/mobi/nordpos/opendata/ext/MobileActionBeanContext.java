@@ -16,6 +16,7 @@
 package mobi.nordpos.opendata.ext;
 
 import java.util.List;
+import mobi.nordpos.opendata.model.CommunicationIndicator;
 import mobi.nordpos.opendata.model.DemographicIndicator;
 import net.sourceforge.stripes.action.ActionBeanContext;
 
@@ -32,6 +33,14 @@ public class MobileActionBeanContext extends ActionBeanContext {
         getRequest().getSession().setAttribute("demographicIndicators", demographicIndicators);
     }
 
+    public List<CommunicationIndicator> getCommunicationIndicators() {
+        return (List<CommunicationIndicator>) getRequest().getSession().getAttribute("communicationIndicators");
+    }
+
+    public void setCommunicationIndicators(List<CommunicationIndicator> communicationIndicators) {
+        getRequest().getSession().setAttribute("communicationIndicators", communicationIndicators);
+    }
+    
     public void logout() {
         getRequest().getSession().invalidate();
     }

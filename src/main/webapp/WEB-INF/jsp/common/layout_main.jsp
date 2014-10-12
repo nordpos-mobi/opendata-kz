@@ -22,8 +22,9 @@
             <link rel="stylesheet" href="<c:url value='/css/stripes.mobile.css'/>" />          
             <link rel="icon" type="image/png" href="<c:url value='/icon.png' />" />
             <script src="<c:url value='/js/jquery-2.1.1.min.js'/>"></script>
-            <script src="<c:url value='/js/jquery.mobile-1.4.4.min.js'/>"></script>
+            <script src="<c:url value='/js/jquery.mobile-1.4.4.min.js'/>"></script>  
             <script src="<c:url value='/js/jquery.flot.min.js'/>" type="text/javascript" ></script>
+            <script src="<c:url value='/js/jquery.flot.pie.min.js'/>" type="text/javascript" ></script>
             <stripes:layout-component name="flot.script"/>
         </head>
         <body>

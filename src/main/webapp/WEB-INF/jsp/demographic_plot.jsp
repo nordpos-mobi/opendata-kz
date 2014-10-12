@@ -10,7 +10,6 @@
                        title="Demographic Indicator Plot"
                        pageid="demographic_indicator_plot">
     <stripes:layout-component name="flot.script">
-
     </stripes:layout-component>
 
     <stripes:layout-component name="button.return">
@@ -19,6 +18,7 @@
             <stripes:label name="label.home" />
         </sdynattr:link>            
         <sdynattr:link href="/DemographicTable.action"
+                       data-direction="reverse"
                        data-role="button"
                        data-icon="table">
             <stripes:label name="label.table" />
