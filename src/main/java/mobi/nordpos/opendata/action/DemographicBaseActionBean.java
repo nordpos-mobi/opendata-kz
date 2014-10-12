@@ -16,6 +16,10 @@
 package mobi.nordpos.opendata.action;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -43,7 +47,7 @@ public abstract class DemographicBaseActionBean extends BaseActionBean {
             List<DemographicIndicator> demographicIndicators = new ArrayList<DemographicIndicator>();
 
             for (int year = 2003; year < 2014; year++) {
-                DemographicIndicator di = getDemographicIndicator(Integer.toString(year));
+                DemographicIndicator di = getDemographicIndicator("brate_", year);
                 di.setYear(Integer.toString(year));
                 demographicIndicators.add(di);
             }
@@ -54,15 +58,29 @@ public abstract class DemographicBaseActionBean extends BaseActionBean {
         }
     }
 
-    private DemographicIndicator getDemographicIndicator(String year) throws MalformedURLException, IOException {
-        String requestURL = getContext().getServletContext().getInitParameter("opendata.gateway").concat("brate_").concat(year);
-        URL wikiRequest = new URL(requestURL);
-        Scanner scanner = new Scanner(wikiRequest.openStream());
+    private DemographicIndicator getDemographicIndicator(String name, int year) throws MalformedURLException, IOException {
+        String requestURL = getContext().getServletContext().getInitParameter("opendata.gateway").concat(name).concat(Integer.toString(year));
+        URL opendataRequest = new URL(requestURL);
+        Scanner scanner = new Scanner(opendataRequest.openStream());
         String response = scanner.useDelimiter("\\Z").next();
         scanner.close();
-        response = response.substring(1, response.length() - 1);
+        JsonElement jStatElement = new JsonParser().parse(response);
+
+        JsonArray jStatArray = null;
+        if (jStatElement.isJsonArray()) {
+            jStatArray = jStatElement.getAsJsonArray();
+        }
+
+        for (JsonElement element : jStatArray) {
+            JsonObject object = element.getAsJsonObject();
+            if (object.get("id").getAsString().equals("1")) {
+                jStatElement = element;
+                break;
+            }
+        }
+
         Gson gson = new Gson();
-        DemographicIndicator di = gson.fromJson(response, DemographicIndicator.class);
+        DemographicIndicator di = gson.fromJson(jStatElement, DemographicIndicator.class);
 
         return di;
     }
