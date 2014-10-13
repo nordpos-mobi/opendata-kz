@@ -15,10 +15,6 @@
  */
 package mobi.nordpos.opendata.action;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +32,12 @@ import net.sourceforge.stripes.validation.ValidationMethod;
 public class CommunicationPieActionBean extends CommunicationBaseActionBean {
 
     private static final String FIX_PHONE_PIE = "/WEB-INF/jsp/communication_fixphone_pie.jsp";
-    private static final String MOBILE_PHONE_PIE = "/WEB-INF/jsp/communication_mobilephone_pie.jsp";
+    private static final String MOBILE_PHONE_PIE = "/WEB-INF/jsp/communication_mobile_pie.jsp";
     private static final String FIX_VS_MOBILE_PIE = "/WEB-INF/jsp/communication_fix_vs_mobile_pie.jsp";
 
-    @Validate(required = true)
+    @Validate(required = true, minvalue = 0, maxvalue = 6)
     int month;
-    @Validate(required = true)
+    @Validate(required = true, minvalue = 2014, maxvalue = 2014)
     int year;
 
     @DefaultHandler
@@ -61,20 +57,19 @@ public class CommunicationPieActionBean extends CommunicationBaseActionBean {
     public void validateFixIndicatorList(ValidationErrors errors) {
         if (getContext().getCommunicationFixIndicators() == null) {
             List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
-            indicators.addAll(getFixPhoneSubscribers());
-            indicators.addAll(getFixInetSubscribers());
+            indicators.addAll(getFixSubscribers());
             getContext().setCommunicationFixIndicators(indicators);
         }
     }
-    
+
     @ValidationMethod(on = {"mobile", "fixVsMobile"})
     public void validateMobileIndicatorList(ValidationErrors errors) {
         if (getContext().getCommunicationMobileIndicators() == null) {
             List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
-            indicators.addAll(getMobilePhoneSubscribers());
+            indicators.addAll(getMobileSubscribers());
             getContext().setCommunicationMobileIndicators(indicators);
         }
-    }    
+    }
 
     public int getMonth() {
         return month;
@@ -113,33 +108,48 @@ public class CommunicationPieActionBean extends CommunicationBaseActionBean {
         this.year = year;
     }
 
-    public String getDataFixPhoneSubscriber() {
-        BigInteger totalPhoneInet = BigInteger.ZERO;
-        BigInteger totalPhone = BigInteger.ZERO;
+    public BigInteger getFixPhoneSubscribers() {
+        return getFixCommunicationIndicatorValue(
+                CommunicationIndicator.CommunicationIndicatorType.FIX_PHONE_SUBSCRIBER);
+    }
 
+    public BigInteger getFixInetSubscribers() {
+        return getFixCommunicationIndicatorValue(
+                CommunicationIndicator.CommunicationIndicatorType.FIX_TOTAL_INET_SUBSCRIBER);
+    }
+
+    private BigInteger getFixCommunicationIndicatorValue(CommunicationIndicator.CommunicationIndicatorType type) {
         for (CommunicationIndicator indicator : getContext().getCommunicationFixIndicators()) {
             if (indicator.getYear() == getYear() && indicator.getMonth() == getMonth()) {
-                if (indicator.getType().equals(CommunicationIndicator.CommunicationIndicatorType.FIX_TOTAL_INET_SUBSCRIBER)) {
-                    totalPhoneInet = indicator.getValue();
-                } else if (indicator.getType().equals(CommunicationIndicator.CommunicationIndicatorType.FIX_PHONE_SUBSCRIBER)) {
-                    totalPhone = indicator.getValue();
+                if (indicator.getType().equals(type)) {
+                    return indicator.getValue();
                 }
             }
         }
-
-        JsonArray dataArray = new JsonArray();
-        JsonObject joInetSubscriber = new JsonObject();
-        joInetSubscriber.addProperty("label", getLocalizationKey("label.FixInetSubscribers"));
-        joInetSubscriber.addProperty("data", totalPhoneInet);
-        dataArray.add(joInetSubscriber);
-        JsonObject joNoInetSubscriber = new JsonObject();
-        joNoInetSubscriber.addProperty("label", getLocalizationKey("label.NoFixInetSubscribers"));
-        joNoInetSubscriber.addProperty("data", totalPhone.subtract(totalPhoneInet));
-        dataArray.add(joNoInetSubscriber);
-        Gson gson = new GsonBuilder().create();
-        String s = gson.toJson(dataArray);
-
-        return s;
+        return BigInteger.ZERO;
     }
 
+    public BigInteger getMobilePhoneSubscribers() {
+        return getMobileCommunicationIndicatorValue(
+                CommunicationIndicator.CommunicationIndicatorType.MOBILE_PHONE_SUBSCRIBER);
+    }
+
+    public BigInteger getMobileInetSubscribers() {
+        return getMobileCommunicationIndicatorValue(
+                CommunicationIndicator.CommunicationIndicatorType.MOBILE_HI_INET_SUBSCRIBER).add(
+                        getMobileCommunicationIndicatorValue(
+                                CommunicationIndicator.CommunicationIndicatorType.MOBILE_LOW_INET_SUBSCRIBER)
+                );
+    }
+
+    private BigInteger getMobileCommunicationIndicatorValue(CommunicationIndicator.CommunicationIndicatorType type) {
+        for (CommunicationIndicator indicator : getContext().getCommunicationMobileIndicators()) {
+            if (indicator.getYear() == getYear() && indicator.getMonth() == getMonth()) {
+                if (indicator.getType().equals(type)) {
+                    return indicator.getValue();
+                }
+            }
+        }
+        return BigInteger.ZERO;
+    }
 }

@@ -7,8 +7,8 @@
 
 <%@include file="/WEB-INF/jsp/common/taglibs.jsp"%>
 <stripes:layout-render name="/WEB-INF/jsp/common/layout_main.jsp"
-                       title="Fix Phone Subscribers Pie"
-                       pageid="fixphone_subscriber_pie">
+                       title="Mobile Phone Subscribers Pie"
+                       pageid="mobilephone_subscriber_pie">
     <stripes:layout-component name="flot.script">        
     </stripes:layout-component>
 
@@ -25,7 +25,7 @@
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.FixPhoneSubscriber.pie" />
+        <stripes:label name="label.MobilePhoneSubscriber.pie" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">
@@ -37,9 +37,9 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 var data = [
-                    {label: "${actionBean.getLocalizationKey('label.InetSubscribers')}", data: ${actionBean.fixInetSubscribers}},
-                    {label: "${actionBean.getLocalizationKey('label.NoInetSubscribers')}", data: ${actionBean.fixPhoneSubscribers} - ${actionBean.fixInetSubscribers}}];
-                var placeholder = $("#fix_phone_subscriber");
+                    {label: "${actionBean.getLocalizationKey('label.InetSubscribers')}", data: ${actionBean.mobileInetSubscribers}},
+                    {label: "${actionBean.getLocalizationKey('label.NoInetSubscribers')}", data: ${actionBean.mobilePhoneSubscribers} - ${actionBean.mobileInetSubscribers}}];
+                var placeholder = $("#mobile_phone_subscriber");
                 $.plot(placeholder, data, {
                     series: {
                         pie: {
@@ -66,7 +66,7 @@
             });
         </script>
         <div style="padding: 10px;">
-            <div id="fix_phone_subscriber" style="width:256px;height:256px"></div>
+            <div id="mobile_phone_subscriber" style="width:256px;height:256px"></div>
         </div>
     </stripes:layout-component>
 

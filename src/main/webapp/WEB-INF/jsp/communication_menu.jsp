@@ -36,7 +36,7 @@
                     <stripes:label name="label.CommunicationFixPhoneIndicator" />
                 </a>
             </li>
-            <%--<li>
+            <li>
                 <a href="#setmobilephonepie" 
                    data-rel="popup" 
                    data-position-to="window" 
@@ -51,7 +51,7 @@
                    data-transition="pop">
                     <stripes:label name="label.CommunicationFixVsMobile" />
                 </a>
-            </li>--%>
+            </li>
         </ul> 
         <div data-role="popup" 
              id="setfixphonepie" 
@@ -92,7 +92,7 @@
             </div>
         </div>
         <div data-role="popup" 
-             id="setmobilephonepie" 
+             id="setfixvsmobilepie" 
              data-overlay-theme="b" data-theme="a" 
              data-dismissible="false" style="max-width:400px;">
             <div data-role="header" data-theme="a">

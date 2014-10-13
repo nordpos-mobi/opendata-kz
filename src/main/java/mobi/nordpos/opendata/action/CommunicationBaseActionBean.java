@@ -30,8 +30,6 @@ import java.util.List;
 import java.util.Scanner;
 import mobi.nordpos.opendata.model.CommunicationIndicator;
 import mobi.nordpos.opendata.model.CommunicationIndicator.CommunicationIndicatorType;
-import net.sourceforge.stripes.validation.ValidationErrors;
-import net.sourceforge.stripes.validation.ValidationMethod;
 
 /**
  * @author Andrey Svininykh <svininykh@gmail.com>
@@ -40,25 +38,24 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
 
     String sMonth[] = {"january", "february", "march", "april", "may", "june", "july"};
 
-    public List<CommunicationIndicator> getFixPhoneSubscribers() {
+    public List<CommunicationIndicator> getFixSubscribers() {
+        List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
         try {
-            return getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_PHONE_SUBSCRIBER);
+            indicators.addAll(getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_PHONE_SUBSCRIBER));
+            indicators.addAll(getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_TOTAL_INET_SUBSCRIBER));
+            return indicators;
         } catch (IOException ex) {
             return null;
         }
     }
 
-    public List<CommunicationIndicator> getFixInetSubscribers() {
+    public List<CommunicationIndicator> getMobileSubscribers() {
+        List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
         try {
-            return getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_TOTAL_INET_SUBSCRIBER);
-        } catch (IOException ex) {
-            return null;
-        }
-    }
-
-    public List<CommunicationIndicator> getMobilePhoneSubscribers() {
-        try {
-            return getCommunicationIndicatorList("comstat", 2014, CommunicationIndicatorType.MOBILE_PHONE_SUBSCRIBER);
+            indicators.addAll(getCommunicationIndicatorList("comstat", 2014, CommunicationIndicatorType.MOBILE_PHONE_SUBSCRIBER));
+            indicators.addAll(getCommunicationIndicatorList("comstat", 2014, CommunicationIndicatorType.MOBILE_HI_INET_SUBSCRIBER));
+            indicators.addAll(getCommunicationIndicatorList("comstat", 2014, CommunicationIndicatorType.MOBILE_LOW_INET_SUBSCRIBER));
+            return indicators;
         } catch (IOException ex) {
             return null;
         }
@@ -134,7 +131,15 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
                 indicator.setType(type);
                 indicator.setYear(year);
                 indicator.setMonth(i);
-                indicator.setValue(jStatObject.get(sMonth[i]).getAsBigDecimal().multiply(BigDecimal.valueOf(1000)).toBigInteger());
+                BigDecimal decimal = BigDecimal.ZERO;
+                try {
+                    decimal = jStatObject.get(sMonth[i]).getAsBigDecimal();
+                } catch (Exception e) {
+                }
+
+                if (decimal != null) {
+                    indicator.setValue(decimal.multiply(BigDecimal.valueOf(1000)).toBigInteger());
+                }
                 indicators.add(indicator);
             }
         }
