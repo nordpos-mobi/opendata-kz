@@ -28,8 +28,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mobi.nordpos.opendata.model.CommunicationIndicator;
 import mobi.nordpos.opendata.model.CommunicationIndicator.CommunicationIndicatorType;
 import net.sourceforge.stripes.validation.ValidationErrors;
@@ -42,18 +40,7 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
 
     String sMonth[] = {"january", "february", "march", "april", "may", "june", "july"};
 
-    @ValidationMethod
-    public void validateCommunicationIndicatorList(ValidationErrors errors) {
-        if (getContext().getCommunicationIndicators() == null) {
-            List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
-            indicators.addAll(getFixPhoneSubscribers());
-            indicators.addAll(getFixInetSubscribers());
-            indicators.addAll(getMobilePhoneSubscribers());
-            getContext().setCommunicationIndicators(indicators);
-        }
-    }
-
-    private List<CommunicationIndicator> getFixPhoneSubscribers() {
+    public List<CommunicationIndicator> getFixPhoneSubscribers() {
         try {
             return getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_PHONE_SUBSCRIBER);
         } catch (IOException ex) {
@@ -61,7 +48,7 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
         }
     }
 
-    private List<CommunicationIndicator> getFixInetSubscribers() {
+    public List<CommunicationIndicator> getFixInetSubscribers() {
         try {
             return getCommunicationIndicatorList("fixstat", 2014, CommunicationIndicatorType.FIX_TOTAL_INET_SUBSCRIBER);
         } catch (IOException ex) {
@@ -69,7 +56,7 @@ public abstract class CommunicationBaseActionBean extends BaseActionBean {
         }
     }
 
-    private List<CommunicationIndicator> getMobilePhoneSubscribers() {
+    public List<CommunicationIndicator> getMobilePhoneSubscribers() {
         try {
             return getCommunicationIndicatorList("comstat", 2014, CommunicationIndicatorType.MOBILE_PHONE_SUBSCRIBER);
         } catch (IOException ex) {

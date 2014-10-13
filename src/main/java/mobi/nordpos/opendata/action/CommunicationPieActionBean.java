@@ -20,11 +20,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import mobi.nordpos.opendata.model.CommunicationIndicator;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.validation.Validate;
+import net.sourceforge.stripes.validation.ValidationErrors;
+import net.sourceforge.stripes.validation.ValidationMethod;
 
 /**
  * @author Andrey Svininykh <svininykh@gmail.com>
@@ -32,6 +36,8 @@ import net.sourceforge.stripes.validation.Validate;
 public class CommunicationPieActionBean extends CommunicationBaseActionBean {
 
     private static final String FIX_PHONE_PIE = "/WEB-INF/jsp/communication_fixphone_pie.jsp";
+    private static final String MOBILE_PHONE_PIE = "/WEB-INF/jsp/communication_mobilephone_pie.jsp";
+    private static final String FIX_VS_MOBILE_PIE = "/WEB-INF/jsp/communication_fix_vs_mobile_pie.jsp";
 
     @Validate(required = true)
     int month;
@@ -39,9 +45,36 @@ public class CommunicationPieActionBean extends CommunicationBaseActionBean {
     int year;
 
     @DefaultHandler
-    public Resolution plot() {
+    public Resolution fixVsMobile() {
+        return new ForwardResolution(FIX_VS_MOBILE_PIE);
+    }
+
+    public Resolution fix() {
         return new ForwardResolution(FIX_PHONE_PIE);
     }
+
+    public Resolution mobile() {
+        return new ForwardResolution(MOBILE_PHONE_PIE);
+    }
+
+    @ValidationMethod(on = {"fix", "fixVsMobile"})
+    public void validateFixIndicatorList(ValidationErrors errors) {
+        if (getContext().getCommunicationFixIndicators() == null) {
+            List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
+            indicators.addAll(getFixPhoneSubscribers());
+            indicators.addAll(getFixInetSubscribers());
+            getContext().setCommunicationFixIndicators(indicators);
+        }
+    }
+    
+    @ValidationMethod(on = {"mobile", "fixVsMobile"})
+    public void validateMobileIndicatorList(ValidationErrors errors) {
+        if (getContext().getCommunicationMobileIndicators() == null) {
+            List<CommunicationIndicator> indicators = new ArrayList<CommunicationIndicator>();
+            indicators.addAll(getMobilePhoneSubscribers());
+            getContext().setCommunicationMobileIndicators(indicators);
+        }
+    }    
 
     public int getMonth() {
         return month;
@@ -66,7 +99,7 @@ public class CommunicationPieActionBean extends CommunicationBaseActionBean {
             case 5:
                 return getLocalizationKey("june");
             case 6:
-                return getLocalizationKey("july");                
+                return getLocalizationKey("july");
             default:
                 return null;
         }
@@ -84,7 +117,7 @@ public class CommunicationPieActionBean extends CommunicationBaseActionBean {
         BigInteger totalPhoneInet = BigInteger.ZERO;
         BigInteger totalPhone = BigInteger.ZERO;
 
-        for (CommunicationIndicator indicator : getContext().getCommunicationIndicators()) {
+        for (CommunicationIndicator indicator : getContext().getCommunicationFixIndicators()) {
             if (indicator.getYear() == getYear() && indicator.getMonth() == getMonth()) {
                 if (indicator.getType().equals(CommunicationIndicator.CommunicationIndicatorType.FIX_TOTAL_INET_SUBSCRIBER)) {
                     totalPhoneInet = indicator.getValue();

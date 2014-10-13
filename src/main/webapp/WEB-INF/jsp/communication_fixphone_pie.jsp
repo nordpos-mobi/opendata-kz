@@ -20,7 +20,7 @@
         <sdynattr:link href="/CommunicationMenu.action"
                        data-direction="reverse"
                        class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars">
-            <stripes:label name="label.Menu" />
+            <stripes:label name="label.menu" />
         </sdynattr:link>        
     </stripes:layout-component>
 

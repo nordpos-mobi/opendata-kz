@@ -33,13 +33,21 @@ public class MobileActionBeanContext extends ActionBeanContext {
         getRequest().getSession().setAttribute("demographicIndicators", demographicIndicators);
     }
 
-    public List<CommunicationIndicator> getCommunicationIndicators() {
-        return (List<CommunicationIndicator>) getRequest().getSession().getAttribute("communicationIndicators");
+    public List<CommunicationIndicator> getCommunicationFixIndicators() {
+        return (List<CommunicationIndicator>) getRequest().getSession().getAttribute("commFixIndicators");
     }
 
-    public void setCommunicationIndicators(List<CommunicationIndicator> communicationIndicators) {
-        getRequest().getSession().setAttribute("communicationIndicators", communicationIndicators);
+    public void setCommunicationFixIndicators(List<CommunicationIndicator> communicationIndicators) {
+        getRequest().getSession().setAttribute("commFixIndicators", communicationIndicators);
     }
+    
+    public List<CommunicationIndicator> getCommunicationMobileIndicators() {
+        return (List<CommunicationIndicator>) getRequest().getSession().getAttribute("commMobileIndicators");
+    }
+
+    public void setCommunicationMobileIndicators(List<CommunicationIndicator> communicationIndicators) {
+        getRequest().getSession().setAttribute("commMobileIndicators", communicationIndicators);
+    }    
     
     public void logout() {
         getRequest().getSession().invalidate();
