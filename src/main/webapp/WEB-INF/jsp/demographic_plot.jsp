@@ -59,7 +59,7 @@
 
             <h2><stripes:label name="label.plot.BirthrateMortalityByYears" /></h2>
             <div style="padding: 10px;">
-                <div id="birthrate_mortality" style="width:384px;height:256px"></div>
+                <div id="birthrate_mortality" style="width:512px;height:256px"></div>
             </div>
         </div>
         <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
@@ -83,7 +83,7 @@
             </script>
             <h2><stripes:label name="label.plot.MarriageDivorceByYears" /></h2>
             <div style="padding: 10px;">
-                <div id="marriage_divorce" style="width:384px;height:256px"></div>
+                <div id="marriage_divorce" style="width:512px;height:256px"></div>
             </div>
         </div>
     </stripes:layout-component>

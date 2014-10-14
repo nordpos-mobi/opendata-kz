@@ -46,19 +46,19 @@
                                 radius: 1,
                                 label: {
                                     show: true,
-                                    radius: 3 / 4,
+                                    radius: 2/4,
                                     formatter: function (label, series) {
                                         return '<div>' + Math.round(series.percent) + '%<br>(' + series.data[0][1] + ')</div>';
                                     },
                                     background: {
-                                        opacity: 0.5
+                                        opacity: 1
                                     }
                                 }
                             }
                         },
                         legend: {
                             show: true,
-                            position: "s"
+                            position: "se"
                         }
                     });
                     placeholder.append("<div style='position:absolute;left:0px;top:0px;color:#666;font-size:medium'>${actionBean.labelMonth}&nbsp;${actionBean.year}</div>");
@@ -66,7 +66,7 @@
             </script>
             <h2><stripes:label name="label.PhoneSubscriber.pie" /></h2>
             <div style="padding: 10px;">
-                <div id="fixvsmobile_phone_subscriber" style="width:256px;height:256px"></div>
+                <div id="fixvsmobile_phone_subscriber" style="width:512px;height:256px"></div>
             </div>
         </div>
 <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
@@ -83,19 +83,19 @@
                                 radius: 1,
                                 label: {
                                     show: true,
-                                    radius: 3 / 4,
+                                    radius: 2 / 4,
                                     formatter: function (label, series) {
                                         return '<div>' + Math.round(series.percent) + '%<br>(' + series.data[0][1] + ')</div>';
                                     },
                                     background: {
-                                        opacity: 0.5
+                                        opacity: 1
                                     }
                                 }
                             }
                         },
                         legend: {
                             show: true,
-                            position: "s"
+                            position: "se"
                         }
                     });
                     placeholder.append("<div style='position:absolute;left:0px;top:0px;color:#666;font-size:medium'>${actionBean.labelMonth}&nbsp;${actionBean.year}</div>");
@@ -103,7 +103,7 @@
             </script>
             <h2><stripes:label name="label.InetSubscriber.pie" /></h2>
             <div style="padding: 10px;">
-                <div id="fixvsmobile_inet_subscriber" style="width:256px;height:256px"></div>
+                <div id="fixvsmobile_inet_subscriber" style="width:512px;height:256px"></div>
             </div>
         </div>            
     </stripes:layout-component>

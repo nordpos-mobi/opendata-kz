@@ -33,7 +33,6 @@
 
     <stripes:layout-component name="content">
 
-        <%--<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">--%>
         <script type="text/javascript">
             $(document).ready(function () {
                 var data = [
@@ -47,26 +46,26 @@
                             radius: 1,
                             label: {
                                 show: true,
-                                radius: 3 / 4,
+                                radius: 2 / 4,
                                 formatter: function (label, series) {
                                     return '<div>' + Math.round(series.percent) + '%<br>(' + series.data[0][1] + ')</div>';
                                 },
                                 background: {
-                                    opacity: 0.5
+                                    opacity: 1
                                 }
                             }
                         }
                     },
                     legend: {
                         show: true,
-                        position: "s"
+                        position: "se"
                     }
                 });
                 placeholder.append("<div style='position:absolute;left:0px;top:0px;color:#666;font-size:medium'>${actionBean.labelMonth}&nbsp;${actionBean.year}</div>");
             });
         </script>
         <div style="padding: 10px;">
-            <div id="fix_phone_subscriber" style="width:256px;height:256px"></div>
+            <div id="fix_phone_subscriber" style="width:512px;height:256px"></div>
         </div>
     </stripes:layout-component>
 
