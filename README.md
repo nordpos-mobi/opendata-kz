@@ -15,16 +15,19 @@ Copyright (c) 2012-2014 Nord Trading Network. Apache License, Version 2.0 ([ALv2
   * drawn a plot by the years(Birthrate/Mortality and Marriage/Divorce).
 
 ### System requirements ###
-* Java virtual machine: Java Oracle Corporation 1.7(**tested**)
-* Java servlet container: Apache Tomcat 8.0.3(**tested**) and Apache Tomcat 7.0.55(**tested**)
+Java virtual machine: Java Oracle Corporation 1.7(**tested**)
+
+Java servlet container: Apache Tomcat 8.0.3(**tested**) and Apache Tomcat 7.0.55(**tested**)
 
 ### Included by ###
-* [Stripes](http://stripesframework.org) is a simply MVC framework
-* [jQuery Mobile](http://jquerymobile.com/) is a mobile interface library 
-* [Flot](http://www.flotcharts.org/) is a pure JavaScript plotting library for jQuery
+[Stripes](http://stripesframework.org) is a simply MVC framework
+
+[jQuery Mobile](http://jquerymobile.com/) is a mobile interface library 
+
+[Flot](http://www.flotcharts.org/) is a pure JavaScript plotting library for jQuery
 
 ### Powered by ###
-* [Open Data Portal](http://data.gov.kz) of Kazakhstan Government [API version 2](http://data.gov.kz/api_description/API_v2)
+[Open Data Portal](http://data.gov.kz) of Kazakhstan Government [API version 2](http://data.gov.kz/api_description/API_v2)
 
 ### Demo ###
-* URL: http://nordpos.mobi/opendata-kz/
+URL: http://nordpos.mobi/opendata-kz/
