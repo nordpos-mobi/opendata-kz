@@ -33,7 +33,10 @@ URL: http://nordpos.mobi/opendata-kz/
 ### Screenshots ###
 
 Samsung Galaxy Y GT-S5360 Android v.2.3.6
+
 ![Login screen](https://cloud.githubusercontent.com/assets/1005780/4631175/7a64a2fa-53b3-11e4-979d-79847325e093.png) ![Demographic indicator table](https://cloud.githubusercontent.com/assets/1005780/4629840/4f56e20e-53a8-11e4-82b3-e99a7f90965d.png) ![Select period menu](https://cloud.githubusercontent.com/assets/1005780/4631211/bc7ae85c-53b3-11e4-8851-b4f3af587e54.png) ![Period selected](https://cloud.githubusercontent.com/assets/1005780/4631222/d1293402-53b3-11e4-9b54-b31d649affca.png)
+
+Samsung Galaxy S4 mini Duos GT-I9192 Android 4.2.2
 
 ![Mobile subscribers pie plot](https://cloud.githubusercontent.com/assets/1005780/4631256/1908b784-53b4-11e4-8921-7ed64aa18f89.png)
 
