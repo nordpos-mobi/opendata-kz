@@ -46,7 +46,7 @@
                                 radius: 1,
                                 label: {
                                     show: true,
-                                    radius: 2/4,
+                                    radius: 2 / 4,
                                     formatter: function (label, series) {
                                         return '<div>' + Math.round(series.percent) + '%<br>(' + series.data[0][1] + ')</div>';
                                     },
@@ -69,7 +69,7 @@
                 <div id="fixvsmobile_phone_subscriber" style="width:512px;height:256px"></div>
             </div>
         </div>
-<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
             <script type="text/javascript">
                 $(document).ready(function () {
                     var data = [

@@ -102,14 +102,4 @@ public abstract class BaseActionBean implements ActionBean {
                 .getFormFieldBundle(getContext().getLocale()).getString(key);
     }
 
-    public InputStream getLocalizationTemplate(String path) {
-        String fileName = new Formatter().format(path, ".".concat(getContext().getServletContext().getInitParameter("country.code"))).toString();
-        InputStream is = getContext().getServletContext().getResourceAsStream(fileName);
-        if (is == null) {
-            return getContext().getServletContext().getResourceAsStream(new Formatter().format(path, "").toString());
-        } else {
-            return is;
-        }
-    }
-
 }
