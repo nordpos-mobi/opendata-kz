@@ -15,17 +15,17 @@
     <stripes:layout-component name="button.return">
         <sdynattr:link href="/Presentation.action"
                        class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext">
-            <stripes:label name="label.home" />
+            <fmt:message key="label.home" />
         </sdynattr:link>
         <sdynattr:link href="/CommunicationMenu.action"
                        data-direction="reverse"
                        class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars">
-            <stripes:label name="label.menu" />
+            <fmt:message key="label.menu" />
         </sdynattr:link>        
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.FixVsMobileSubscriber.pie" />
+        <fmt:message key="label.FixVsMobileSubscriber.pie" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">
@@ -64,7 +64,7 @@
                     placeholder.append("<div style='position:absolute;left:0px;top:0px;color:#666;font-size:medium'>${actionBean.labelMonth}&nbsp;${actionBean.year}</div>");
                 });
             </script>
-            <h2><stripes:label name="label.PhoneSubscriber.pie" /></h2>
+            <h2><fmt:message key="label.PhoneSubscriber.pie" /></h2>
             <div style="padding: 10px;">
                 <div id="fixvsmobile_phone_subscriber" style="width:512px;height:256px"></div>
             </div>
@@ -101,7 +101,7 @@
                     placeholder.append("<div style='position:absolute;left:0px;top:0px;color:#666;font-size:medium'>${actionBean.labelMonth}&nbsp;${actionBean.year}</div>");
                 });
             </script>
-            <h2><stripes:label name="label.InetSubscriber.pie" /></h2>
+            <h2><fmt:message key="label.InetSubscriber.pie" /></h2>
             <div style="padding: 10px;">
                 <div id="fixvsmobile_inet_subscriber" style="width:512px;height:256px"></div>
             </div>

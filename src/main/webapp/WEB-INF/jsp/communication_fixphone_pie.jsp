@@ -15,17 +15,17 @@
     <stripes:layout-component name="button.return">
         <sdynattr:link href="/Presentation.action"
                        class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext">
-            <stripes:label name="label.home" />
+            <fmt:message key="label.home" />
         </sdynattr:link>
         <sdynattr:link href="/CommunicationMenu.action"
                        data-direction="reverse"
                        class="ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars">
-            <stripes:label name="label.menu" />
+            <fmt:message key="label.menu" />
         </sdynattr:link>        
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.FixPhoneSubscriber.pie" />
+        <fmt:message key="label.FixPhoneSubscriber.pie" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">

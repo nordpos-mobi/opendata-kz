@@ -13,22 +13,22 @@
     <stripes:layout-component name="button.return">
         <sdynattr:link href="/Presentation.action"
                        class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext">
-            <stripes:label name="label.home" />
+            <fmt:message key="label.home" />
         </sdynattr:link>        
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.information" />
+        <fmt:message key="label.information" />
     </stripes:layout-component>
 
     <stripes:layout-component name="content">
 
         <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-collapsed="false">
-            <h4><stripes:label name="label.servlet.environment" /></h4>
+            <h4><fmt:message key="label.servlet.environment" /></h4>
             <div class="ui-grid-a ui-responsive">
                 <div class="ui-block-a">
                     <div class="ui-body ui-body-c">
-                        <stripes:label name="label.info.java.version" />
+                        <fmt:message key="label.info.java.version" />
                     </div>
                 </div>
                 <div class="ui-block-b">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="ui-block-a">
                     <div class="ui-body ui-body-c">
-                        <stripes:label name="label.info.os" />
+                        <fmt:message key="label.info.os" />
                     </div>
                 </div>
                 <div class="ui-block-b">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="ui-block-a">
                     <div class="ui-body ui-body-c">
-                        <stripes:label name="label.info.server" />
+                        <fmt:message key="label.info.server" />
                     </div>
                 </div>
                 <div class="ui-block-b">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="ui-block-a">
                     <div class="ui-body ui-body-c">
-                        <stripes:label name="label.info.language" />
+                        <fmt:message key="label.info.language" />
                     </div>
                 </div>
                 <div class="ui-block-b">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="ui-block-a">
                     <div class="ui-body ui-body-c">
-                        <stripes:label name="label.info.country" />
+                        <fmt:message key="label.info.country" />
                     </div>
                 </div>
                 <div class="ui-block-b">

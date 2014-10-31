@@ -19,7 +19,6 @@
             <link rel="stylesheet" href="<c:url value='/css/jquery.mobile-1.4.4.min.css'/>" />
             <link rel="stylesheet" href="<c:url value='/css/jquery.mobile.icons-1.4.4.min.css'/>" />
             <link rel="stylesheet" href="<c:url value='/css/icon-pack-custom.css'/>" />
-            <link rel="stylesheet" href="<c:url value='/css/stripes.mobile.css'/>" />          
             <link rel="icon" type="image/png" href="<c:url value='/icon.png' />" />
             <script src="<c:url value='/js/jquery-2.1.1.min.js'/>"></script>
             <script src="<c:url value='/js/jquery.mobile-1.4.4.min.js'/>"></script>  
@@ -50,7 +49,7 @@
                 <div data-role="content" style="padding: 15px" align="center">
                     <stripes:layout-component name="content"/>                    
                     <div class="ui-body">
-                        <h3><stripes:label name="label.PoweredBy" /></h3>
+                        <h3><fmt:message key="label.PoweredBy" /></h3>
                         <a href="http://data.gov.kz">
                             <img src="<c:url value='/image/logo.data.gov.kz.png' />" alt="Data.gov.kz"/>
                         </a>

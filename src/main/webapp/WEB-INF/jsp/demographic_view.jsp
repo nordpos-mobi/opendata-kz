@@ -13,12 +13,12 @@
     <stripes:layout-component name="button.return">
         <sdynattr:link href="/Presentation.action"
                        class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext">
-            <stripes:label name="label.home" />
+            <fmt:message key="label.home" />
         </sdynattr:link>                
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.DemographicIndicator.table" />
+        <fmt:message key="label.DemographicIndicator.table" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">
@@ -26,7 +26,7 @@
                        data-role="button"
                        data-icon="bar-chart-o"
                        data-prefetch="true">
-            <stripes:label name="label.plot" />
+            <fmt:message key="label.plot" />
         </sdynattr:link>         
     </stripes:layout-component>
 
@@ -42,9 +42,9 @@
                data-column-popup-theme="a">
             <thead>
                 <tr class="ui-bar-d">
-                    <th><stripes:label name="label.Year" /></th>
-                    <th data-priority="1"><stripes:label name="label.Birthrate" /></th>             
-                    <th data-priority="2"><stripes:label name="label.Mortality" /></th>
+                    <th><fmt:message key="label.Year" /></th>
+                    <th data-priority="1"><fmt:message key="label.Birthrate" /></th>             
+                    <th data-priority="2"><fmt:message key="label.Mortality" /></th>
                     <th data-priority="1">
                         <abbr title="${actionBean.getLocalizationKey("label.abbr.Marriage")}">
                             <c:out value="${actionBean.getLocalizationKey('label.Marriage')}"/> 

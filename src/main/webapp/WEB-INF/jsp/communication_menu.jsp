@@ -13,12 +13,12 @@
     <stripes:layout-component name="button.return">
         <sdynattr:link href="/Presentation.action"
                        class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext">
-            <stripes:label name="label.home" />
+            <fmt:message key="label.home" />
         </sdynattr:link>                
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.CommunicationIndicatorMenu" />
+        <fmt:message key="label.CommunicationIndicatorMenu" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">
@@ -33,7 +33,7 @@
                    data-rel="popup" 
                    data-position-to="window" 
                    data-transition="pop">
-                    <stripes:label name="label.CommunicationFixPhoneIndicator" />
+                    <fmt:message key="label.CommunicationFixPhoneIndicator" />
                 </a>
             </li>
             <li>
@@ -41,7 +41,7 @@
                    data-rel="popup" 
                    data-position-to="window" 
                    data-transition="pop">
-                    <stripes:label name="label.CommunicationMobilePhoneIndicator" />
+                    <fmt:message key="label.CommunicationMobilePhoneIndicator" />
                 </a>
             </li>
             <li>
@@ -49,7 +49,7 @@
                    data-rel="popup" 
                    data-position-to="window" 
                    data-transition="pop">
-                    <stripes:label name="label.CommunicationFixVsMobile" />
+                    <fmt:message key="label.CommunicationFixVsMobile" />
                 </a>
             </li>
         </ul> 
@@ -58,7 +58,7 @@
              data-overlay-theme="b" data-theme="a" 
              data-dismissible="false" style="max-width:400px;">
             <div data-role="header" data-theme="a">
-                <h1><stripes:label name="label.dialog.setPeriod" /></h1>
+                <h1><fmt:message key="label.dialog.setPeriod" /></h1>
             </div>
             <div role="main" class="ui-content">                        
                 <stripes:form action="/CommunicationPie.action?fix">
@@ -68,7 +68,7 @@
                    class="ui-btn ui-corner-all ui-icon-forbidden ui-btn-icon-left ui-btn-b ui-shadow" 
                    data-rel="back" 
                    data-transition="flow">
-                    <stripes:label name="cancel" />
+                    <fmt:message key="cancel" />
                 </a>                                
             </div>
         </div>
@@ -77,7 +77,7 @@
              data-overlay-theme="b" data-theme="a" 
              data-dismissible="false" style="max-width:400px;">
             <div data-role="header" data-theme="a">
-                <h1><stripes:label name="label.dialog.setPeriod" /></h1>
+                <h1><fmt:message key="label.dialog.setPeriod" /></h1>
             </div>
             <div role="main" class="ui-content">                        
                 <stripes:form action="/CommunicationPie.action?mobile">
@@ -87,7 +87,7 @@
                    class="ui-btn ui-corner-all ui-icon-forbidden ui-btn-icon-left ui-btn-b ui-shadow" 
                    data-rel="back" 
                    data-transition="flow">
-                    <stripes:label name="cancel" />
+                    <fmt:message key="cancel" />
                 </a>                                
             </div>
         </div>
@@ -96,7 +96,7 @@
              data-overlay-theme="b" data-theme="a" 
              data-dismissible="false" style="max-width:400px;">
             <div data-role="header" data-theme="a">
-                <h1><stripes:label name="label.dialog.setPeriod" /></h1>
+                <h1><fmt:message key="label.dialog.setPeriod" /></h1>
             </div>
             <div role="main" class="ui-content">                        
                 <stripes:form action="/CommunicationPie.action">
@@ -106,7 +106,7 @@
                    class="ui-btn ui-corner-all ui-icon-forbidden ui-btn-icon-left ui-btn-b ui-shadow" 
                    data-rel="back" 
                    data-transition="flow">
-                    <stripes:label name="cancel" />
+                    <fmt:message key="cancel" />
                 </a>                                
             </div>
         </div>                

@@ -15,18 +15,18 @@
     <stripes:layout-component name="button.return">
         <sdynattr:link href="/Presentation.action"
                        class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext">
-            <stripes:label name="label.home" />
+            <fmt:message key="label.home" />
         </sdynattr:link>            
         <sdynattr:link href="/DemographicTable.action"
                        data-direction="reverse"
                        data-role="button"
                        data-icon="table">
-            <stripes:label name="label.table" />
+            <fmt:message key="label.table" />
         </sdynattr:link>         
     </stripes:layout-component>
 
     <stripes:layout-component name="header.title">
-        <stripes:label name="label.DemographicIndicator.plot" />
+        <fmt:message key="label.DemographicIndicator.plot" />
     </stripes:layout-component>
 
     <stripes:layout-component name="button.action">
@@ -57,7 +57,7 @@
                 });
             </script>
 
-            <h2><stripes:label name="label.plot.BirthrateMortalityByYears" /></h2>
+            <h2><fmt:message key="label.plot.BirthrateMortalityByYears" /></h2>
             <div style="padding: 10px;">
                 <div id="birthrate_mortality" style="width:512px;height:256px"></div>
             </div>
@@ -81,7 +81,7 @@
                     ]);
                 });
             </script>
-            <h2><stripes:label name="label.plot.MarriageDivorceByYears" /></h2>
+            <h2><fmt:message key="label.plot.MarriageDivorceByYears" /></h2>
             <div style="padding: 10px;">
                 <div id="marriage_divorce" style="width:512px;height:256px"></div>
             </div>
